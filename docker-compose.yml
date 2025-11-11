@@ -1,0 +1,18 @@
+services:
+  saas_db:
+    image: postgres:18.0
+    restart: always
+    ports:
+      - "5432:5432"
+    deploy:
+      mode: "replicated"
+      replicas: 1
+    environment:
+      POSTGRES_USER: saas_db_user
+      POSTGRES_PASSWORD: saas_db_password
+      POSTGRES_DB: saas_db
+    volumes:
+      - "saas_db:/var/lib/postgresql/data"
+
+volumes:
+  saas_db:
